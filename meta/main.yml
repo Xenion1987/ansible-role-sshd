@@ -9,7 +9,7 @@ galaxy_info:
   description: "Manage SSH server configuration via Ansible on Linux systems."
   license: "BSD, MIT"
   min_ansible_version: "2.11"
-  namespace: "xenion1987"
+  namespace: "Xenion1987"
   role_name: "sshd"
   platforms:
     - name: Debian
