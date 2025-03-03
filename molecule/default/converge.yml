@@ -22,8 +22,7 @@
       ansible.builtin.setup:
 
   roles:
-    # - role: xenion1987.sshd
-    - role: ansible-role-sshd
+    - role: xenion1987.sshd
       vars:
         sshd_config_lines:
           - Port 22222
