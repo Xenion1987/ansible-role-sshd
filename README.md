@@ -1,33 +1,53 @@
-# template-ansible-role
+Ansible role: sshd
+===
 
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit) ![ansible-tests](https://github.com/Xenion1987/template-ansible-role/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/xenion1987/ansible-role-sshd/actions/workflows/ci.yml/badge.svg)](https://github.com/xenion1987/ansible-role-sshd/actions/workflows/ci.yml)
+[![Ansible Galaxy downloads](https://img.shields.io/ansible/role/d/Xenion1987/sshd?label=Galaxy%20downloads&logo=ansible&color=%23096598)](https://galaxy.ansible.com/ui/standalone/roles/Xenion1987/sshd)
 
-## Replace placeholder
+Manage SSH server configuration via Ansible on Linux systems.
 
-### `.github/workflows/ci.yml`
+Requirements
+---
 
-Replace `template-ansible-role` with the new role name.
+- Min. Ansible version: 2.11
 
-### `.vscode/settings.json`
+Role Variables
+---
 
-Update and comment in Ansible and Python path values, if required
+main
+---
 
-```sh
-sed -i s,WORKSPACE_PATH,${PWD}, .vscode/settings.json
+| Variable | Type | Required | Choices | Default | Description |
+| --- | --- | --- | --- | --- | --- |
+| `sshd_install_package` | `bool` | `false` | `true`, `false` | `true` | Ensure SSH Server is installed. |
+| `sshd_package_name` | `str` | `false` | | `openssh-server` | SSH Server package name to be installed. |
+| `sshd_config_path` | `str` | `false` | | `/etc/ssh/sshd_config.d` | Path to the directory where the custom SSH configurations should be stored. |
+| `sshd_config_file_name` | `str` | `false` | | `sshd_config_custom.conf` | Name of the custom SSH configuration file. |
+| `sshd_config_lines` | `list` | `false` | | `[]` | Name of the custom SSH configuration file. |
+
+
+
+Dependencies
+---
+
+None
+
+Example Playbook
+---
+
+```yaml
+- name: "Play | sshd"
+  hosts: all
+  roles:
+    - role: sshd
 ```
 
-### OPTIONAL: Copy/move `.example.envrc` to `.envrc`
+License
+---
 
-Requires [`direnv`](https://direnv.net/) to be installed and hooked into your shell.
+BSD, MIT
 
-### `meta/main.yml`
+Author Information
+---
 
-Update all `meta` informations to fit to your requirements.
-
-### `meta/argument-specs.yml`
-
-Explain all variables within this file. This also can be used to auto-generate a `README.md` file. Follow instructions on [docs.ansible.com](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html#role-argument-validation).
-
-### `README.md`
-
-Replace the template repo URL `github.com/Xenion1987/template-ansible-role` with the new repo URL.
+Xenion1987 @ Access-InTech

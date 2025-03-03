@@ -4,7 +4,6 @@
   gather_facts: true
 
   tasks:
-    - name: ASSERT | true
+    - name: ASSERT | SSH Port
       ansible.builtin.assert:
-        that:
-          - true
+        that: ansible_ssh_port == 22222

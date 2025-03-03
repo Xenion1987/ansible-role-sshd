@@ -4,18 +4,34 @@ argument_specs:
   main:
     author:
       - Xenion1987
-    description:
-      - This is a
-      - mulit line
-      - description
-    short_description: Main tasks for role ROLENAME
+    short_description: Main tasks for Ansible role 'sshd'
     options:
-      option1:
+      sshd_install_package:
         choices:
-          - choices if
-          - type list
-        default: "default value"
-        description: "A single line descryption"
+          - true
+          - false
+        default: true
+        description: Ensure SSH Server is installed.
         required: false
-        # ['str', 'list', 'dict', 'bool', 'int', 'float', 'path', 'raw', 'jsonarg', 'json', 'bytes', 'bits']
+        type: bool
+      sshd_package_name:
+        default: openssh-server
+        description: SSH Server package name to be installed.
+        required: false
+        type: str
+      sshd_config_path:
+        default: /etc/ssh/sshd_config.d
+        description: Path to the directory where the custom SSH configurations should be stored.
+        required: false
+        type: str
+      sshd_config_file_name:
+        default: sshd_config_custom.conf
+        description: Name of the custom SSH configuration file.
+        required: false
+        type: str
+      sshd_config_lines:
+        default: []
+        description: Name of the custom SSH configuration file.
+        elements: str
+        required: false
         type: list

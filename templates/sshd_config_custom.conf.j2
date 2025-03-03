@@ -1,0 +1,5 @@
+### {{ ansible_managed }}
+
+{% for sshd_config_line in sshd_config_lines -%}
+{{ sshd_config_line }}
+{% endfor %}

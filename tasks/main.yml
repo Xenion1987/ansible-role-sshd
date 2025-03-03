@@ -1,3 +1,30 @@
 ---
-- name: PING
-  ansible.builtin.ping:
+# tasks file for sshd
+- name: Update package cache (deb-based)
+  when:
+    - sshd_install_package
+    - ansible_os_family == "Debian" | d(false)
+  ansible.builtin.apt:
+    update_cache: true
+- name: Install sshd
+  notify:
+    - Enable sshd
+    - Start sshd
+  ansible.builtin.package:
+    name: "{{ sshd_package_name }}"
+    state: present
+- name: Ensure /run/sshd exists
+  ansible.builtin.file:
+    path: /run/sshd
+    state: directory
+    mode: "0755"
+- name: Setup custom SSH config
+  notify: Reload sshd
+  when: sshd_config_lines | length > 0
+  ansible.builtin.template:
+    src: "sshd_config_custom.conf.j2"
+    dest: "{{ sshd_config_path }}/{{ sshd_config_file_name }}"
+    owner: root
+    group: root
+    mode: "0644"
+    validate: sshd -T -f %s

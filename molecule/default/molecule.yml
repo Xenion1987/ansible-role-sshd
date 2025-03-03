@@ -5,10 +5,13 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "${MOLECULE_DISTRO:-debian:12}"
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian12}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
     pre_build_image: true
-    privileged: false
-### Required for 'offline' role testing
+## Required for 'offline' role testing
 provisioner:
   name: ansible
   env:

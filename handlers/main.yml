@@ -1,1 +1,18 @@
 ---
+# handlers file for sshd
+- name: Enable sshd
+  ansible.builtin.service:
+    name: sshd
+    state: enabled
+- name: Start sshd
+  ansible.builtin.service:
+    name: sshd
+    state: started
+- name: Restart sshd
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+- name: Reload sshd
+  ansible.builtin.service:
+    name: sshd
+    state: reloaded

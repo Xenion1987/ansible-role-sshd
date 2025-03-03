@@ -1,2 +1,12 @@
 ---
-option1: type list
+# defaults file for sshd
+sshd_install_package: true
+sshd_package_name: openssh-server
+sshd_config_path: /etc/ssh/sshd_config.d
+sshd_config_file_name: sshd_config_custom.conf
+sshd_config_lines:
+  []
+  # - Port 22222
+  # - permit_root_login no
+  # - password_authentication no
+  # - permit_empty_passwords no
