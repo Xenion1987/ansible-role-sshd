@@ -15,5 +15,5 @@ platforms:
 # Required for 'offline' role testing
 # provisioner:
 #   name: ansible
-# env:
-#   ANSIBLE_ROLES_PATH: "../../../"
+#   env:
+#     ANSIBLE_ROLES_PATH: "../../../"

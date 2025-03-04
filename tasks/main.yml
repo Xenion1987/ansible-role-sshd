@@ -1,15 +1,15 @@
 ---
-# tasks file for sshd
-- name: Update package cache (deb-based)
+- name: Update package cache (Debian)
   when:
     - sshd_install_package
-    - ansible_os_family == "Debian" | d(false)
+    - ansible_distribution_file_variety == "Debian" | d(false)
   ansible.builtin.apt:
     update_cache: true
 - name: Install sshd
   notify:
-    - Enable sshd
-    - Start sshd
+    - Enable sshd ({{ ansible_distribution_file_variety }})
+    - Start sshd ({{ ansible_distribution_file_variety }})
+  when: sshd_install_package
   ansible.builtin.package:
     name: "{{ sshd_package_name }}"
     state: present
@@ -18,8 +18,13 @@
     path: /run/sshd
     state: directory
     mode: "0755"
+- name: Generate SSH Hostkeys
+  changed_when: "'generating new host keys' in ssh_keygen_out.stdout"
+  register: ssh_keygen_out
+  ansible.builtin.command:
+    cmd: ssh-keygen -A
 - name: Setup custom SSH config
-  notify: Reload sshd
+  notify: Reload sshd ({{ ansible_distribution_file_variety }})
   when: sshd_config_lines | length > 0
   ansible.builtin.template:
     src: "sshd_config_custom.conf.j2"

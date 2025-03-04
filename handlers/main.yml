@@ -1,19 +1,38 @@
 ---
-# handlers file for sshd
-- name: Enable sshd
-  when: ansible_virtualization_type | d() != "docker"
+- name: "Enable sshd (Debian)"
+  when:
+    - ansible_virtualization_type | d() != "docker"
+  ansible.builtin.service:
+    name: ssh
+    state: enabled
+- name: "Start sshd (Debian)"
+  ansible.builtin.service:
+    name: ssh
+    state: started
+- name: "Restart sshd (Debian)"
+  ansible.builtin.service:
+    name: ssh
+    state: restarted
+- name: "Reload sshd (Debian)"
+  ansible.builtin.service:
+    name: ssh
+    state: reloaded
+
+- name: "Enable sshd (RedHat)"
+  when:
+    - ansible_virtualization_type | d() != "docker"
   ansible.builtin.service:
     name: sshd
     state: enabled
-- name: Start sshd
+- name: "Start sshd (RedHat)"
   ansible.builtin.service:
     name: sshd
     state: started
-- name: Restart sshd
+- name: "Restart sshd (RedHat)"
   ansible.builtin.service:
     name: sshd
     state: restarted
-- name: Reload sshd
+- name: "Reload sshd (RedHat)"
   ansible.builtin.service:
     name: sshd
     state: reloaded
