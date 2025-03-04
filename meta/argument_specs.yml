@@ -6,24 +6,6 @@ argument_specs:
       - Xenion1987
     short_description: Main tasks for Ansible role 'sshd'
     options:
-      sshd_install_package:
-        choices:
-          - true
-          - false
-        default: true
-        description: Ensure SSH Server is installed.
-        required: false
-        type: bool
-      sshd_package_name:
-        default: openssh-server
-        description: SSH Server package name to be installed.
-        required: false
-        type: str
-      sshd_config_path:
-        default: /etc/ssh/sshd_config.d
-        description: Path to the directory where the custom SSH configurations should be stored.
-        required: false
-        type: str
       sshd_config_file_name:
         default: sshd_config_custom.conf
         description: Name of the custom SSH configuration file.
@@ -35,3 +17,21 @@ argument_specs:
         elements: str
         required: false
         type: list
+      sshd_config_path:
+        default: /etc/ssh/sshd_config.d
+        description: Path to the directory where the custom SSH configurations should be stored.
+        required: false
+        type: str
+      sshd_install_package:
+        choices:
+          - true
+          - false
+        default: false
+        description: Ensure SSH Server is installed.
+        required: false
+        type: bool
+      sshd_package_name:
+        default: openssh-server
+        description: SSH Server package name to be installed.
+        required: false
+        type: str

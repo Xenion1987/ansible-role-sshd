@@ -19,11 +19,11 @@ main
 
 | Variable | Type | Required | Choices | Default | Description |
 | --- | --- | --- | --- | --- | --- |
-| `sshd_install_package` | `bool` | `false` | `true`, `false` | `true` | Ensure SSH Server is installed. |
-| `sshd_package_name` | `str` | `false` | | `openssh-server` | SSH Server package name to be installed. |
-| `sshd_config_path` | `str` | `false` | | `/etc/ssh/sshd_config.d` | Path to the directory where the custom SSH configurations should be stored. |
 | `sshd_config_file_name` | `str` | `false` | | `sshd_config_custom.conf` | Name of the custom SSH configuration file. |
 | `sshd_config_lines` | `list` | `false` | | `[]` | Name of the custom SSH configuration file. |
+| `sshd_config_path` | `str` | `false` | | `/etc/ssh/sshd_config.d` | Path to the directory where the custom SSH configurations should be stored. |
+| `sshd_install_package` | `bool` | `false` | `true`, `false` | `false` | Ensure SSH Server is installed. |
+| `sshd_package_name` | `str` | `false` | | `openssh-server` | SSH Server package name to be installed. |
 
 
 
