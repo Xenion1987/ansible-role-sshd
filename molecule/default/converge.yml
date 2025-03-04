@@ -24,6 +24,7 @@
   roles:
     - role: xenion1987.sshd
       vars:
+        sshd_install_package: true
         sshd_config_lines:
           - Port 22222
           - PermitRootLogin no
