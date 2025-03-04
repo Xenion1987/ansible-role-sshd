@@ -7,6 +7,6 @@ sshd_config_file_name: sshd_config_custom.conf
 sshd_config_lines:
   []
   # - Port 22222
-  # - permit_root_login no
-  # - password_authentication no
-  # - permit_empty_passwords no
+  # - PermitRootLogin no
+  # - PasswordAuthentication no
+  # - PermitEmptyPasswords no

@@ -1,6 +1,7 @@
 ---
 # handlers file for sshd
 - name: Enable sshd
+  when: ansible_virtualization_type | d() != "docker"
   ansible.builtin.service:
     name: sshd
     state: enabled

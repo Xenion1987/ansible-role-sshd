@@ -4,6 +4,10 @@
   gather_facts: true
 
   tasks:
-    - name: ASSERT | SSH Port
-      ansible.builtin.assert:
-        that: ansible_ssh_port == 22222
+    - name: Check if port is 22222
+      changed_when: false
+      failed_when: ssh_listening_port.stdout_lines[0] != "22222"
+      register: ssh_listening_port
+      ansible.builtin.shell:
+        executable: /bin/bash
+        cmd: grep -ow 22222 < <(ss -4lt)
